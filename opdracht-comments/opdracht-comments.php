@@ -1,7 +1,7 @@
+<?php
+
 /*Sophie Moons
 moonssophie@gmail.com*/ 
-
-<?php
 	
 	$naam	="Sophie";
 	$achternaam="Moons";
@@ -21,7 +21,7 @@ moonssophie@gmail.com*/
 		<h1>opdracht-comments</h1>
 		
 		<p><?php echo( $naam . '&nbsp'. $achternaam) ?></p> 
-		#nbsp = beter als spatie omdat de html soms ' ' gewoon negeert
+		<!--&nbsp = beter als spatie omdat de html soms ' ' gewoon negeert-->
 
 	</section>
 
