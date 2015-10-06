@@ -53,7 +53,6 @@ $dag2 = str_replace(($teVervangenLetter), (strtolower($teVervangenLetter)),$dagT
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>opdracht-string-extra-functions</title>
 </head>
 <body>
 

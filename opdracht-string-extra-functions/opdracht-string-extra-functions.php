@@ -22,7 +22,6 @@ $vervangLangsteWoord =  str_replace(($lettertje), $cijfertje,$langsteWoord);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>opdracht-string-extra-functions</title>
 </head>
 <body>
 

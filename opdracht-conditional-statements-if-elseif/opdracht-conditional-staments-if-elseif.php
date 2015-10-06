@@ -60,7 +60,6 @@ $tekstResultaat="Het getal is out of bounds";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>opdracht-string-conditional-statements-if-elseif</title>
 </head>
 <body>
 

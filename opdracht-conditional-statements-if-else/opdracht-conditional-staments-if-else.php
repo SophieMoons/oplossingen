@@ -32,7 +32,6 @@ $jaren =round($dagen/365,0,PHP_ROUND_HALF_DOWN);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>opdracht-string-conditional-statements-if-else</title>
 </head>
 <body>
 
