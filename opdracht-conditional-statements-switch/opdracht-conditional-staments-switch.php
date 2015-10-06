@@ -4,47 +4,38 @@
 $randGetal = rand(1,7);
 $dag = '';
 
-#if($randGetal == 1)
-#{
-#	$dag = 'maandag';
-#}
-#zo omslachtig...
 
 switch($randGetal){ #veel beter, stel je voor... allemaal ifs
 	case 1:
-	$dag='maandag';
+	$dag='Maandag';
 	break;
 
 	case 2:
-	$dag = 'dinsdag';
+	$dag = 'Dinsdag';
 	break;
 
 	case 3:
-	$dag='woensdag';
+	$dag='Woensdag';
 	break;
 
 	case 4:
-	$dag='donderdag';
+	$dag='Donderdag';
 	break;
 
 	case 5:
-	$dag='vrijdag';
+	$dag='Vrijdag';
 	break;
 
 	case 6:
-	$dag='zaterdag';
+	$dag='Zaterdag';
 	break;
 
 	case 7:
-	$dag='zondag';
+	$dag='Zondag';
 	break;
 }
 
-#deel 2
-$teVervangenLetter = 'A';
-
-$dagTemp = strtoupper($dag);
-$dag2 = str_replace(($teVervangenLetter), (strtolower($teVervangenLetter)),$dagTemp);
+$dag = strtolower($dag);
 
 ?>
 
@@ -59,15 +50,9 @@ $dag2 = str_replace(($teVervangenLetter), (strtolower($teVervangenLetter)),$dagT
 
 	<section>
 
-		<h1>opdracht-conditional-statements-if</h1>
-
-		<h2>Deel 1</h2>
+		<h1>opdracht-conditional-statements-switch</h1>
 		
 		<p><?php echo($dag) ?></p> 
-
-		<h2>Deel 2</h2>
-		
-		<p><?php echo($dag2) ?></p> 
 
 	</section>
 
