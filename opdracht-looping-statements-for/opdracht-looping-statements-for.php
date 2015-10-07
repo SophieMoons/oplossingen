@@ -8,7 +8,7 @@ $tabel = array();
 
 for($i=0;$i<$rijen;$i++)
 {
-	$tabel[]='<tr>';
+	$tabel[]='<tr>'; #geen HTML in php!
 
 	for($j=0;$j<$kolommen;$j++)
 	{
@@ -25,7 +25,7 @@ $tabel2=array();
 $uitkomstVermenig=0;
 
 
-for($i=0;$i<$rijen+1;$i++)
+for($i=0;$i<$rijen+1;$i++) #i kan best aantalrijen worden (hetzelfde met j, maakt het minder cryptisch)
 {
 	$tabel2[]='<tr>';
 
@@ -53,10 +53,14 @@ $vermenigResult=implode("\n",$tabel2);
 	<section class="body">
 		<h1>opdracht-looping-statements-for</h1>
 		<h2>Deel 1</h2>
-		<table><?php echo($kolomResult) ?></table>
+		<table><?= $kolomResult ?></table> <!-- liefst alternatieve syntax <?= $kolomResult ?>!-->
 
 		<h2>Deel 2</h2>
 		<table><?php echo($vermenigResult) ?></table>
+
+		<table>
+for()
+		</table>
 
 	</section>
 
