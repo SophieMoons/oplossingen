@@ -22,6 +22,9 @@ $vervangLangsteWoord =  str_replace(($lettertje), $cijfertje,$langsteWoord);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/global.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/directory.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/facade.css">
 </head>
 <body>
 
@@ -30,15 +33,15 @@ $vervangLangsteWoord =  str_replace(($lettertje), $cijfertje,$langsteWoord);
 		<h1>opdracht-string-extra-functions</h1>
 		
 		<h2>Deel 1.</h2>
-		<p><?php echo( $aantalCharsFruit) ?></p> 
-		<p><?php echo( $posFruit) ?></p> 
+		<p><?= $aantalCharsFruit ?></p> 
+		<p><?= $posFruit ?></p> 
 
 		<h2>Deel 2.</h2>
-		<p><?php echo( $posFruit2) ?></p> 
-		<p><?php echo( $capitalFruit2) ?></p> 
+		<p><?= $posFruit2 ?></p> 
+		<p><?= $capitalFruit2 ?></p> 
 
 		<h2>Deel 3.</h2>
-		<p><?php echo($vervangLangsteWoord) ?></p> 
+		<p><?= $vervangLangsteWoord ?></p> 
 
 	</section>
 

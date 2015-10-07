@@ -42,7 +42,9 @@ $evenGetal = isEven(46);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/global.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/directory.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/facade.css">
 </head>
 
 <body>
@@ -50,9 +52,9 @@ $evenGetal = isEven(46);
 	<section class="body">
 		<h1>opdracht-functions</h1>
 		<h2>Deel 1</h2>
-		<p><?php echo($som) ?></p>
-		<p><?php echo($product) ?></p>
-		<p>Het opgegeven getal is <?php echo ($evenGetal)? "een" : "geen" ?> even getal</p>
+		<p><?= $som ?></p>
+		<p><?= $product ?></p>
+		<p>Het opgegeven getal is <?= $evenGetal? "een" : "geen" ?> even getal</p>
 
 
 		<h2>Deel 2</h2>

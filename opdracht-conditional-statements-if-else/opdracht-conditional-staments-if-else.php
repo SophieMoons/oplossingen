@@ -31,7 +31,11 @@ $jaren =round($dagen/365,0,PHP_ROUND_HALF_DOWN);
 <html>
 <head>
     <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/global.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/directory.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/facade.css">
 </head>
 <body>
 
@@ -47,12 +51,12 @@ $jaren =round($dagen/365,0,PHP_ROUND_HALF_DOWN);
 		
 		<p>In <?php echo($secondes) ?> seconden zijn er:</p>
 		<ul>
-			<li><?php echo($minuten) ?> minuten</li>
-			<li><?php echo($uren) ?> uren</li>
-			<li><?php echo($dagen) ?> dagen</li>
-			<li><?php echo($weken) ?> weken</li>
-			<li><?php echo($maanden) ?> maanden (31 dagen)</li>
-			<li><?php echo($jaren) ?> jaren (365 dagen)</li>
+			<li><?= $minuten ?> minuten</li>
+			<li><?= $uren ?> uren</li>
+			<li><?= $dagen ?> dagen</li>
+			<li><?= $weken ?> weken</li>
+			<li><?= $maanden ?> maanden (31 dagen)</li>
+			<li><?= $jaren ?> jaren (365 dagen)</li>
 		</ul>
 
 	</section>

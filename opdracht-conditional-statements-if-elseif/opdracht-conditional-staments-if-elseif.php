@@ -60,6 +60,9 @@ $tekstResultaat="Het getal is out of bounds";
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/global.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/directory.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/facade.css">
 </head>
 <body>
 
@@ -67,7 +70,7 @@ $tekstResultaat="Het getal is out of bounds";
 
 		<h1>opdracht-conditional-statements-if-elseif</h1>
 		
-		<p><?php echo($tekstResultaat) ?></p>
+		<p><?= $tekstResultaat ?></p>
 
 	</section>
 

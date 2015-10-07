@@ -8,8 +8,12 @@ $volledigeNaam = $voornaam .'&nbsp'. $achternaam;
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+  	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/global.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/directory.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/facade.css">
+</head>
 </head>
 <body>
 	
@@ -17,8 +21,8 @@ $volledigeNaam = $voornaam .'&nbsp'. $achternaam;
 
 		<h1>opdracht-concatenate-string</h1>
 
-<p><?php echo($volledigeNaam) ?></p>
-<p><?php echo(strlen($volledigeNaam))?></p>
+<p><?= $volledigeNaam ?></p>
+<p><?= strlen($volledigeNaam)?></p>
 
 	</section>
 

@@ -24,6 +24,9 @@ $counterGetal=0;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/global.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/directory.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/facade.css">
 </head>
 
 <body>
@@ -31,7 +34,7 @@ $counterGetal=0;
 	<section class="body">
 		<h1>opdracht-looping-statements-while</h1>
 		<h2>Deel 1</h2>
-		<p><?php echo($getalLijst) ?></p>
+		<p><?= $getalLijst ?></p>
 
 		<h2>Deel 2</h2>
 		<ul>

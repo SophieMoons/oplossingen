@@ -53,6 +53,10 @@ $dag2 = str_replace(($teVervangenLetter), (strtolower($teVervangenLetter)),$dagT
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="http://web-backend.local/css/global.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/directory.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/facade.css">
+
 </head>
 <body>
 
@@ -62,11 +66,11 @@ $dag2 = str_replace(($teVervangenLetter), (strtolower($teVervangenLetter)),$dagT
 
 		<h2>Deel 1</h2>
 		
-		<p><?php echo($dag) ?></p> 
+		<p><?= $dag ?></p> 
 
 		<h2>Deel 2</h2>
 		
-		<p><?php echo($dag2) ?></p> 
+		<p><?= $dag2 ?></p> 
 
 	</section>
 

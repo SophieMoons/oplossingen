@@ -19,6 +19,9 @@ arsort($getalCleanArr);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/global.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/directory.css">
+	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/facade.css">
 
 </head>
 
@@ -28,10 +31,10 @@ arsort($getalCleanArr);
 		<h1>opdracht-array-basis</h1>
 		<h2>Deel 2</h2>
 		<p>Er zijn in totaal (zoogdieren en andere) <?php echo ($aantalTotDieren)?> dieren</p>
-		<p><?php echo var_dump($dierenLijst)?></p>
+		<p><?= var_dump($dierenLijst) ?></p>
 
 		<h2>Deel 3</h2>
-		<p><?php echo var_dump($getalCleanArr)?></p>
+		<p><?= var_dump($getalCleanArr) ?></p>
 
 	</section>
 

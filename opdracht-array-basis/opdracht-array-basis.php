@@ -58,13 +58,13 @@ for($i=0;$i<count($getalArr)-1;$i++) #4. tel reverse en gewoon met elkaar op
 
 		<h1>opdracht-array-basis</h1>
 		<h2>Deel 1</h2>
-		<p><?php echo var_dump($voertuigArr)?></p>
+		<p><?= var_dump($voertuigArr)?></p>
 
 		<h2>Deel 2</h2>
-		<p><?php echo ($vermenigvuldigArr)?></p>
-		<p><?php echo var_dump($onevenGetalArr)?></p>
-		<p><?php echo var_dump($omgekeerdArr)?></p>
-		<p><?php echo ($som)?></p>
+		<p><?= $vermenigvuldigArr ?></p>
+		<p><?= var_dump($onevenGetalArr) ?></p>
+		<p><?= var_dump($omgekeerdArr) ?></p>
+		<p><?= $som ?></p>
 	</section>
 
 </body>
