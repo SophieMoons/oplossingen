@@ -49,9 +49,9 @@ function rand()
 	<section class="body">
 		<h1>opdracht-functions-gevorderd</h1>
 		<h2>Deel 1</h2>
-		<p>Functie 1: De needle <?= $needle ?> komt <?= $uitkomst1 ?>% voor in de hash key: <?= $md5HashKey ?></p> <!--nu is de tekst flexibel !-->
-		<p>Functie 2: De needle <?= $needle ?> komt <?= $uitkomst2 ?>% voor in de hash key: <?= $md5HashKey ?></p>
-		<p>Functie 3: De needle <?= $needle ?> komt <?= $uitkomst3 ?>% voor in de hash key: <?= $md5HashKey ?></p>
+		<p>Functie 1: De needle <?= $needle1 ?> komt <?= $uitkomst1 ?>% voor in de hash key: <?= $md5HashKey ?></p> <!--nu is de tekst flexibel !-->
+		<p>Functie 2: De needle <?= $needle2 ?> komt <?= $uitkomst2 ?>% voor in de hash key: <?= $md5HashKey ?></p>
+		<p>Functie 3: De needle <?= $needle3 ?> komt <?= $uitkomst3 ?>% voor in de hash key: <?= $md5HashKey ?></p>
 
 
 		<h2>Deel 2</h2>
