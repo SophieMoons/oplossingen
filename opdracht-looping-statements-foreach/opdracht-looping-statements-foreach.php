@@ -13,13 +13,8 @@ $uniqueChars=count($uniqueTemp);
 
 $occurances = array_count_values($tekstChars);
 
-foreach($occurances as $item => $value)
-{	
-$occuranceTemp[]="<p>Er waren ".$value." instanties van: ".$item;
-}
 
-$occuranceList=implode("</p>", $occuranceTemp);
-$amountOfDiffChars = count($occuranceTemp);
+$amountOfDiffChars = count($occurances);
 
 #Deel 2
 
@@ -38,9 +33,11 @@ $amountOfDiffChars = count($occuranceTemp);
 	<section class="body">
 		<h1>opdracht-looping-statements-foreach</h1>
 		<h2>Deel 1</h2>
-		<p>Er zijn <?php echo($amountOfDiffChars)?> verschillende characters</p>
+		<p>Er zijn <?= $amountOfDiffChars ?> verschillende characters</p>
 		<br>
-		<p><?php echo($occuranceList)?></p>
+			<?php foreach($occurances as $item => $value): ?>
+				<p> Er waren <?= $value ?> instanties van: <?= $item?> </p>
+			<?php endforeach ?>
 		<br>
 		<h2>Deel 2</h2>
 
