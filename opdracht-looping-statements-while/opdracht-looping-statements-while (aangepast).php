@@ -17,18 +17,6 @@ $boodschappenlijstje = array('chippekens','kroepoek','wafeltjens','kabeljauwhaas
 
 $counterGetal=0;
 
-$boodschapArrItems=array();
-
-$output='';
-
-while($counterGetal<(count($boodschappenlijstje))) #for is hier nog steeds beter, maar ik zal het met while uitvoeren om het toch eens gedaan te hebben
-{
-	$boodschapArrItems[]='<li>'.($boodschappenlijstje[$counterGetal]).'</li>';
-	$counterGetal++;
-}
-
-$output=implode("\n", $boodschapArrItems); #geen implode, geen <li>, zet foreach in HTML en doe $value in <li>
-
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +34,12 @@ $output=implode("\n", $boodschapArrItems); #geen implode, geen <li>, zet foreach
 		<p><?php echo($getalLijst) ?></p>
 
 		<h2>Deel 2</h2>
-		<ul><?php echo($output) ?></ul>
+		<ul>
+			<?php while( isset( $boodschappenlijstje [ $counterGetal ] ) ):  ?>
+						<li><?= $boodschappenlijstje [ $counterGetal ] ?></li>
+					<?php $counterGetal++; ?>
+			<?php endwhile ?>
+		</ul>
 
 	</section>
 
