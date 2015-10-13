@@ -5,7 +5,7 @@
 			'inhoud'=>"Burger King is a rainbow of surprises these days. The company recently unveiled a black Whopper for Halloween, a version of the chain's signature sandwich served on a dark bun. But people who eat the A.1. Halloween Whopper say it goes in one color... and comes out another.
 			The company told ABC News that the black bun contains less than 1 percent food dye, and writes in its nutrition facts that the flavorings and food colorings in the bun 'are commonly used in the industry and within the safe and Acceptable Daily Intake (ADI) approved by the Food and Drug Administration (FDA).'
 			It does not specify which colors are used, but Medical Daily reports that green dyes are often used in black food coloring. Not everyone is put off by the goblin-green Halloween side effect. In fact, several customers seem to be looking forward to it.",
-			'video' => 'https://youtu.be/dQw4w9WgXcQ',
+			'video' => 'https://www.youtube.com/embed/lXMskKTw3Bc',
 			'afbeelding' => 'article1',  
 			'afbeeldingBeschrijving'=>'Black Whopper'),
 
@@ -23,7 +23,7 @@
 			'inhoud'=>"Ace! Almost... Whether you call it Jell-O or Jelly, you can't go wrong obliterating some dessert with a tennis racket.
 			In this no frills video, 'Sl0w Mo Guys' Gav and Dan take a swing at catching the smashing moment in slow motion. The gentlemen explain that Redditors passed along a similar Jello-O smash photo, wondering if it would be possible to recreate it on video. Ask, and you shall receive.
 			'It's like individual snakes!' says Gav, describing the gelatinous blob as it is crushed to sticky pieces. And, yes, someone did get hit in the face.",
-			'video'=>'https://youtu.be/5mZovjRlkWs',
+			'video'=>'https://youtube.com/embed/5mZovjRlkWs',
 			'afbeelding' => 'article3',  
 			'afbeeldingBeschrijving'=>'Jell-O Smash'),
 			);
@@ -57,7 +57,13 @@
 		#head-title
 		{
 			font-size: 3em;
-			margin-left:36px;
+		}
+
+		#head-title-individual
+		{
+			font-size: 2.5em;
+			margin-left:35px;
+			font-style: italic;
 		}
 
 		.container
@@ -69,6 +75,13 @@
 		img
 		{
 			max-width: 250px;
+		}
+
+		#video
+		{
+			margin-top: 25px;
+			margin-left: 8%;
+			margin-right: 92%;
 		}
 
 		.multiple
@@ -100,9 +113,12 @@
 
 </head>
 <body>
-
-<h1 id="head-title">De krokante krant</h1>
 		<div class="container">
+<?php if(!$individueelArtikel): ?>
+	<h1 id="head-title">De krokante krant</h1>
+		<?php else: ?>
+			<h1 id="head-title-individual">Individueel artikel</h1>
+<?php endif?>
 			<?php foreach ($artikels as $id => $artikel): ?>
 				<article class="<?php echo ( !$individueelArtikel ) ? 'multiple': 'single' ; ?>">
 					<h2><?= $artikel['title'] ?></h2>
@@ -114,7 +130,7 @@
 
 						<?php else: ?>
 							<?php if(array_key_exists('video', $artikel)): ?>
-								<a href="<?=$artikel['video']?>">Watch Now</a>
+								<iframe id="video" width="627" height="480" src= <?=$artikel['video']?> frameborder="0" allowfullscreen></iframe>
 							<?php endif?>
 					<?php endif ?>
 				</article>
