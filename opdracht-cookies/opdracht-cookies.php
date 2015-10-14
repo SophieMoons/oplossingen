@@ -6,38 +6,29 @@
 	$username = $inlogData[0];
 	$password = $inlogData[1];
 	
-	$message = '';
+	$message = false;
 
 	$title ='Inloggen';
-
-	#$correct = false; #vervang door isAuthenticated
-
-	$blank = true;
 
 	$isAuthenticated = false;
 
 
 	if(isset($_POST['submit']))
 	{
-		$blank=false;
-
 		if(($_POST['username'])==$username && ($_POST['paswoord'])==$password)
 		{
 			setcookie('authenticated', true, time() + 60);
-
-			$title='Dashboard';
-			$message = 'U bent ingelogd';
-			#$correct = true; # weg,vervang door isAuthenticated
+			header('location: opdracht-cookies.php');
 		}
 
 		else
 		{
-			$message = 'Paswoord of username incorrect, probeer opnieuw';
-			#$correct = false; # weg, vervang door isAuthenticated
+			$message['text'] = 'Paswoord of username incorrect, probeer opnieuw';
+			$message['type'] = 'fail';
 		}
 	}
 
-	if (var_dump(isset($_GET['cookie']))) 
+	if (isset($_GET['cookie'])) 
 	{
 		if ($_GET['cookie'] == 'delete') #bij uitloggen...
 		{
@@ -49,6 +40,8 @@
 	if (isset( $_COOKIE['authenticated'])) 
 	{
 		$isAuthenticated = true;
+		$message['text'] = 'Login succesvol!';
+		$message['type'] = '';
 	}
 
 ?>
@@ -63,7 +56,7 @@
 	<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/facade.css">
 
 	<style>
-		#false 
+		.fail 
 		{
 			font color: #B22222;
 			background-color: #F08080;
@@ -78,13 +71,7 @@
 <body>
 
 <h1><?= $title?></h1>
-	<p id= <?php if($blank): ?>"blank"
-			
-			<?php else: ?>
-			
-				"<?php echo (!$isAuthenticated) ? 'false': 'correct' ; ?>"
-			
-			<?php endif?>> <?= $message?> </p>
+	<p class=<?= $message['type']?>> <?= $message['text']?> </p>
 
 		<?php if(!$isAuthenticated):?>
 
@@ -103,6 +90,6 @@
 					<a href="opdracht-cookies.php?cookie=delete">Uitloggen</a>
 
 				<?php endif?>
-		</form>
+			</form>
 </body>
 </html>
