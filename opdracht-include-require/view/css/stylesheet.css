@@ -1,0 +1,149 @@
+header 
+{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: block;
+    height: 100px;
+}
+
+body
+{
+    height:100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* Full width */
+}
+
+#mainTitle
+{
+    font-size: 27px;
+    margin-left:3%;
+    margin-top:2.5%;
+    width:auto;
+    display:inline-block;
+    float: left;
+}
+
+.nav
+{
+    margin-left:20px;
+    width:auto;
+    display: inline-block;
+}
+
+.nav>li
+{
+    display: inline-block;
+    margin-top: 23px;
+    margin-right: 5px;
+    margin-left: -9.2px;
+}
+
+.nav>li>a
+{
+    text-decoration: none;
+    font-weight: 500;
+    color: #5c5c5c;
+    line-height: 15px;
+    padding-top:39px;
+    padding-bottom: 40px;
+    padding-left:35px;
+    padding-right: 35px;
+}
+
+.nav>li>a:hover
+{
+    color: #f2f2f2;
+    background-color: #4e85e8;
+}
+
+.account
+{
+    width:auto;
+    display: inline-block;
+    float: right;
+    margin-right: 3%;
+    margin-top:25px;
+}
+
+.account > img
+{
+    display: inline-block;
+    width: 35px;
+    border-radius: 150px;
+    border-color: #4e85e8;
+    border-width: 2px;
+    margin-left: 25px;
+}
+
+/* Alles hierboven is voor header */
+
+.content
+{
+    height: 661px;
+    margin-bottom: -16px;
+    background: url(https://wparena.com/wp-content/uploads/2009/09/img7.jpg) top center;
+    opacity: 0.8;
+}
+
+article
+{
+    margin-top: 150px;
+    margin-left:5%;
+    display: inline-block;
+    padding: 15px;
+    padding-top:2px;
+    padding-bottom: 5px;
+    background-color: #ededed;
+    border-radius: 15px;
+    width: 300px;
+    height: 350px;
+}
+
+article > h2
+{
+font-size: 24px;
+}
+
+/* Alles hierboven is voor body (content) */
+
+footer
+{
+    display: block;
+}
+
+.footer
+{
+    background-color: #535c6c;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    margin-bottom: 0;
+    
+    
+}
+
+.footer>li
+{
+    display: inline-block;
+    position: relative;
+    margin-left: 20.5%;
+    margin-top:auto;
+    margin-bottom: auto;
+}
+
+.footer>li>a
+{
+    text-decoration: none;
+    color: #c3c3c3;
+    padding: 5px;
+}
+
+.footer>li>a:hover
+{
+    color: #ededed;
+}
+
+/* Alles hierboven is voor footer */
+

@@ -1,0 +1,14 @@
+           <div class="content">
+           
+                <section>
+                    <?php foreach ( $artikels as $id => $artikel): ?>
+                    <article>
+		                  <h2><?= $artikel['title'] ?></h2>
+		                  <p><?= $artikel['body'] ?></p>
+		                  <p><?= $artikel['tags'] ?></p>
+	               </article> 
+                    <?php endforeach ?>
+                </section> 
+                
+            </div>
+            </div>
