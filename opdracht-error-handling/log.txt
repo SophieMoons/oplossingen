@@ -1,0 +1,2 @@
+[21:50:14 11/17/2015] - 127.0.0.1 - type:[error] De kortingscode heeft niet de juiste lengte
+[21:50:51 11/17/2015] - 127.0.0.1 - type:[error] De kortingscode heeft niet de juiste lengte
