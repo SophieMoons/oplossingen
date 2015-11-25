@@ -10,19 +10,19 @@ class HTMLBuilder
 		$this->header =	$header;
 		$this->body	= $body;
 		$this->footer =	$footer;
-			
-		$this->buildPage();
+
+		$this->buildPage(); //1 keer alles is benoemd, tijd voor de assemblage
 	}
 
 	public function buildHeader()
 	{
+		$cssPath	= dirname(dirname(__FILE__)) . '/css/';	//
+		$filesArr = glob($cssPath . '/*.' . 'css');	    	// pad zoeken
+															// CSS inladen
+		$cssLinks = $this->buildCssLink($filesArr);			//
 
+		include('html/'. $this->header);
 	}
-
-		public function createCssLink($filesArr)
-			{
-
-			}
 		
 	public function buildBody()
 	{
@@ -31,21 +31,55 @@ class HTMLBuilder
 
 	public function buildFooter()
 	{
+		$jsPath	= dirname(dirname(__FILE__)) . '/js/';	//
+		$filesArr =	glob($jsPath . '/*.' . 'js');		// pad zoeken
+														// JS inladen
+		$jsScripts = $this->buildJsScripts($filesArr);	//
 
 		include ('html/'. $this->footer);
 	}
 
-		public function createJsScripts($filesArr)
+	public function findFiles($dir, $file)
+	{
+		return glob($dir . '/*.' . $file);	
+
+	}
+		public function buildJsScripts($filesArr)
 		{
-		
-			return implode('', $jsHTMLArr);
+			$jsHTMLArr = array();
+					
+			foreach ($filesArr as $file)
+			{
+				$fileInfo =	pathinfo($file);
+				$fileName =	$fileInfo['basename'];
+					
+				$jsHTMLArr[] = '<script src="js/' . $fileName . '"></script>';
+			}
+			
+				return implode('', $jsHTMLArr);
 		}
 
-	public function buildPage()
+		public function buildCssLink($filesArr)
 		{
-			$this->buildHeader();
-			$this->buildBody();
-			$this->buildFooter();
-		}	
+				$cssHTMLArr	=	array();
+		
+				foreach ($filesArr as $file)
+				{
+					$fileInfo	=	pathinfo($file);
+					$fileName	=	$fileInfo['basename'];
+				
+					$cssHTMLArr[] = '<link rel="stylesheet" type="text/css" href="../css/' . $fileName . '">';
+				}
+			
+				return implode('', $cssHTMLArr);
+		}
+
+	public function buildPage() //alles wordt nu in 1 pagina gegoten
+	{
+		$this->buildHeader();
+		$this->buildBody();
+		$this->buildFooter();
+	}
+
 	}
 ?>

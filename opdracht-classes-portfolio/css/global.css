@@ -1,0 +1,208 @@
+header 
+{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: block;
+    height: 100px;
+}
+
+body
+{
+    height:100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* Full width */
+}
+
+#mainTitle
+{
+    font-size: 30px;
+    margin-left:3.5%;
+    margin-top:1%;
+    width:auto;
+    display:inline-block;
+    float: left;
+}
+
+.nav
+{
+    text-align: center;
+}
+
+.nav>li
+{
+    display: inline-block;
+    margin-top: 23px;
+    margin-right: 5px;
+    margin-left: -9.2px;
+}
+
+.nav>li>a
+{
+    text-decoration: none;
+    font-weight: 500;
+    color: #5c5c5c;
+    line-height: 15px;
+    padding-top:39px;
+    padding-bottom: 40px;
+    padding-left:100px;
+    padding-right: 100px;
+}
+
+.nav>li>a:hover
+{
+    color: #f2f2f2;
+    background-color: #6283c3;
+}
+
+/* Alles hierboven is voor header */
+
+.content
+{
+    margin-top: -16px;
+    margin-bottom: -16px;
+    background: url(../img/bg01.jpg) center;
+    opacity: 0.8;
+}
+
+.section1
+{
+    display: inline-block;
+    width:70%;
+    heigth:100%;
+}
+
+.section2
+{
+    display: inline-block;
+    margin-top: -21px;
+    margin-left: 70%;
+    width:30%;
+    background-color: #a8accb;
+    height:100%;
+    padding-bottom: 140px;
+}
+
+.section2 > img
+{
+    display: block;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 120px;
+    border-radius: 200px;
+    border-style: none;
+}
+
+.section2 > ul
+{
+    color:#484848;
+    font-weight: bold;
+}
+
+.section2>ul>li:first-child
+{
+    margin-top:20px;
+}
+
+.section2>ul>li
+{
+    color:white;
+    font-weight: normal;
+    list-style: none;
+    height:1.1em;
+    margin-left:10px;
+}
+
+ .section2>ul>li>a 
+{
+    color: white;
+    text-decoration: none;
+}
+
+#mainName
+{
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.bio
+{
+    margin-left: 2.45em;
+    max-width: 80%;
+}
+
+.bio > p:first-child
+{
+    color:#484848;
+    font-weight: bold;
+}
+
+.bio > p:nth-child(2)
+{
+    color:white;
+    margin-left:10px;
+    font-style: italic;
+}
+
+hr
+{
+    border-style: solid;
+    border-color: #7f829b;
+    width:15%;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+
+/* Alles hierboven is voor body (content) */
+
+footer
+{
+    display: block;
+}
+
+.footer
+{
+    background-color: #606172;
+    padding-top:1rem;
+    padding-bottom:1rem;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.footer>li
+{
+    display: inline-block;
+    position: relative;
+    margin-top:auto;
+    margin-bottom: auto;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.footer>li>a
+{
+    font-weight: bold;
+    text-decoration: none;
+    color: #4d4d4d;
+    padding: 5px;
+}
+
+.footer>li>img
+{
+    width:30px;
+    margin-bottom: -7.5px;
+    border: none;
+}
+
+.footer>li>a:hover
+{
+    color: #c3c3c3;
+}
+
+/* Alles hierboven is voor footer */
+
