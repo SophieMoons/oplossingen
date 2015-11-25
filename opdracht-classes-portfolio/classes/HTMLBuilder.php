@@ -35,7 +35,6 @@ class HTMLBuilder
 		$filesArr =	glob($jsPath . '/*.' . 'js');		// pad zoeken
 														// JS inladen
 		$jsScripts = $this->buildJsScripts($filesArr);	//
-
 		include ('html/'. $this->footer);
 	}
 
@@ -68,7 +67,7 @@ class HTMLBuilder
 					$fileInfo	=	pathinfo($file);
 					$fileName	=	$fileInfo['basename'];
 				
-					$cssHTMLArr[] = '<link rel="stylesheet" type="text/css" href="../css/' . $fileName . '">';
+					$cssHTMLArr[] = '<link rel="stylesheet" type="text/css" href="css/' . $fileName . '">';
 				}
 			
 				return implode('', $cssHTMLArr);
