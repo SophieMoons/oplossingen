@@ -13,7 +13,8 @@
 		$ToDo = $_SESSION['toDoItem'];
 	}
 
-	$toDoItems = array_values($_POST); //alle geposte values komen in de array te staan
+    $errorMessage=false;
+	$toDoItems[] = array_values($_POST)[0]; //alle geposte values komen in de array te staan
 	$itemStatus = "incomplete";
 	$completedList = incompleteInArray('incomplete', $toDoItems); //bool om te checken of de lijst voltooid is
 
@@ -21,7 +22,7 @@
 	{
     	foreach ($haystack as $item) 
     	{
-        	if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array_r($needle, $item, $strict))) 
+        	if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array($needle, $item, $strict))) 
        	 	{
        	    	return true;
         	}
@@ -30,7 +31,7 @@
     	return false;
 	}
 
-	var_dump($toDoItems); //raar... 'toevoegen' komt er ook in te staan...
+	var_dump($toDoItems); //raar... 'toevoegen' komt er ook in te staan... HOE 
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +50,11 @@
 
 </head>
 <body>
-
+	<?php if($errorMessage) :?>
+		<div class="error notification">
+			<p>Probeert ge da hier kapot te maken ofzo?! Type iets in!</p>
+		</div>
+	<?php endif ?>
 	<h1>To-Do App</h1>
 
 		<form action="opdracht-01-todo.php" method="POST">
@@ -65,7 +70,7 @@
 		<?php if(!$toDoItems): ?> <!-- wanneer er geen taken zijn (arrays zonder values bestaan niet in php) !-->
 			<p>WAT!? Geen TAKEN??? ONMOGELIJK!!</p>
 
-			<?php else :?> <!-- indien taken toegevoegd... (coming soon) !-->
+			<?php else :?> <!-- indien taken toegevoegd... !-->
 				<h2>To-Do:</h2>
 					<ul>
 						<?php foreach($toDoItems as $deelKey => $deelArray):  ?>

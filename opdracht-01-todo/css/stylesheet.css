@@ -51,12 +51,10 @@ li
 {
 	content:"";
 	background-color: #55F855;
-
 }
 
 .complete
 {
-
 	text-decoration: line-through;
 }
 
@@ -111,19 +109,19 @@ li
 	color: white;
 }
 
-.modal
+.error
 {
 	border-radius:3px;
 }
 
-.error
+.notification
 {
 	background-color:red;
 	line-height:32px;
 	color:white;
 }
 
-.error:before
+.notification:before
 {
 	content:"!";
 	display:inline-block;
