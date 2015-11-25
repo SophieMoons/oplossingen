@@ -5,8 +5,6 @@
  	if (isset($_POST['submit']))
     {
         $_SESSION['toDoItem'] = $_POST['toDoItem'];
-        	$toDoItems = array_values($_POST); //alle geposte values komen in de array te staan
-
     }
 
 	#check eerst of deze geset is, dan slaag je gegevens op in sessie
@@ -32,7 +30,7 @@
     	return false;
 	}
 
-	var_dump($toDoItems); //raar... toevoegen komt erin te staan...
+	var_dump($toDoItems); //raar... 'toevoegen' komt er ook in te staan...
 ?>
 
 <!DOCTYPE html>
@@ -71,14 +69,10 @@
 				<h2>To-Do:</h2>
 					<ul>
 						<?php foreach($toDoItems as $deelKey => $deelArray):  ?>
-
-            				<?php foreach( $deelArray as $data => $value ):  ?>
               	  				<li>
-									<button title="status" name="toggleToDo" value="0" class="incomplete"></button>
-									<p><?= $value?></p>
+									<button title="status" name="toggleToDo" value="0" class="incomplete"><?= $deelArray?></button>
 									<button title="remove" name="removeToDo" value="0"></button>
                 				</li>
-            				<?php endforeach ?>
         				<?php endforeach ?>
 					</ul>
 		<?php endif ?>
@@ -87,7 +81,7 @@
 			<p>"Werken luilakken!" - Bobby</p>
 		<?php endif ?>
 
-		<?php if(!empty($toDoItems)) :?> <!-- alle taken voltooid? !-->
+		<?php if(!empty($toDoItems) && $completedList == true) :?> <!-- alle taken voltooid? !-->
 			<p>"Ge moogt spellekens gaan spelen!" - je moeder</p>
 		<?php endif ?>
 			<?php 			?> <!-- de nog voltooien taken... (coming soon)	!-->
