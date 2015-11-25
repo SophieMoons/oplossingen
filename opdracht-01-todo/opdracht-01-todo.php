@@ -70,7 +70,7 @@
 					<ul>
 						<?php foreach($toDoItems as $deelKey => $deelArray):  ?>
               	  				<li>
-									<button title="status" name="toggleToDo" value="0" class="incomplete"><?= $deelArray?></button>
+									<button title="status" name="toggleToDo" value="0" class="<?= $itemStatus?>"> <?= $deelArray?> </button>
 									<button title="remove" name="removeToDo" value="0"></button>
                 				</li>
         				<?php endforeach ?>
