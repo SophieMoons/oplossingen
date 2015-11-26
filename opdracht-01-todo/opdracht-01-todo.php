@@ -2,11 +2,8 @@
 	session_start();
 
   	$errorMessage = false;
-
     $toDoItems = array();	
-
 	$itemStatus = "incomplete";
-	$completedList = incompleteInArray('incomplete', $toDoItems); //bool om te checken of de lijst voltooid is
 
 	//als er gesubmit is...
  	if (isset($_POST['submit'])) 
@@ -44,8 +41,34 @@
     
     	return false;
 	}
+
+	if(isset($_POST['toggleToDo']))
+	{
+		$_SESSION['toggleToDo'] = $_POST['toggleToDo'];
+
+		if($itemStatus =='incomplete')
+		{
+			$itemStatus ='complete';
+		}
+
+		else
+		{
+			$itemStatus='incomplete';
+		}
+	}
+
+	if(isset($_SESSION['toggleToDo']))
+	{
+		$ToDoStatus = $_SESSION['toggleToDo'];
+	}
+
 		var_dump($toDoItems); //wordt altijd overschreven... moet een methode vinden om een soort push effect te krijgen
     	var_dump($errorMessage);
+
+    	$completedList = incompleteInArray('incomplete', $toDoItems); //bool om te checken of de lijst volledig afgecheckt is
+    	var_dump($completedList);
+    	var_dump($itemStatus);
+
 ?>
 
 <!DOCTYPE html>
@@ -85,15 +108,17 @@
 			<p>WAT!? Geen TAKEN??? ONMOGELIJK!!</p>
 
 			<?php else :?> <!-- indien taken toegevoegd... !-->
-				<h2>To-Do:</h2>
-					<ul>
-						<?php foreach($toDoItems as $deelKey => $deelArray):  ?>
-              	  				<li>
-									<button title="status" name="toggleToDo" value="0" class="<?= $itemStatus?>"> <?= $deelArray?> </button>
-									<button title="remove" name="removeToDo" value="0"></button>
-                				</li>
-        				<?php endforeach ?>
-					</ul>
+				<form action="opdracht-01-todo.php" method="POST">
+					<h2>To-Do:</h2>
+						<ul>
+							<?php foreach($toDoItems as $deelKey => $deelArray):  ?>
+              	  					<li>
+										<button title="complete" name="toggleToDo" value="0" class="<?= $itemStatus?>"> <?= $deelArray?> </button>
+										<button title="remove" name="removeToDo" value="0"></button>
+                					</li>
+        					<?php endforeach ?>
+						</ul>
+				</form>		
 		<?php endif ?>
 
 		<?php if(!empty($toDoItems) && $completedList == false) :?> <!-- nog taken onvoltooid? !-->
