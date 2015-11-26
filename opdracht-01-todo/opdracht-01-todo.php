@@ -1,22 +1,35 @@
 <?php
 	session_start();
 
-    #Data vorige php
- 	if (isset($_POST['submit']))
+  	$errorMessage = false;
+
+    $toDoItems = array();	
+
+	$itemStatus = "incomplete";
+	$completedList = incompleteInArray('incomplete', $toDoItems); //bool om te checken of de lijst voltooid is
+
+ 	if (isset($_POST['submit'])) //session wordt gesaved na submitting
     {
         $_SESSION['toDoItem'] = $_POST['toDoItem'];
+
+        if ($_POST['toDoItem'] == '')//om te zien of er wel iets is ingevuld
+        {
+  			$errorMessage=true;
+        }
+
+        else
+        {
+			$errorMessage = false;
+			$input	=	$_POST['toDoItem'];
+			array_push($toDoItems,$input); //alle geposte values komen in de array te staan (index 0 van de input omdat anders 'toevoegen' erbij komt te staan)        	
+        }
     }
 
-	#check eerst of deze geset is, dan slaag je gegevens op in sessie
+	//check eerst of deze geset is, dan slaag je gegevens op in sessie
 	if(isset($_SESSION['toDoItem']))
 	{
 		$ToDo = $_SESSION['toDoItem'];
 	}
-
-    $errorMessage=false;
-	$toDoItems[] = array_values($_POST)[0]; //alle geposte values komen in de array te staan
-	$itemStatus = "incomplete";
-	$completedList = incompleteInArray('incomplete', $toDoItems); //bool om te checken of de lijst voltooid is
 
 	function incompleteInArray($needle, $haystack, $strict = false) //zit er een incomplete to-do item in de array?
 	{
@@ -30,8 +43,8 @@
     
     	return false;
 	}
-
-	var_dump($toDoItems); //raar... 'toevoegen' komt er ook in te staan... HOE 
+		var_dump($toDoItems); //wordt altijd overschreven... moet een methode vinden om een soort push effect te krijgen
+    	var_dump($errorMessage);
 ?>
 
 <!DOCTYPE html>
@@ -60,11 +73,11 @@
 		<form action="opdracht-01-todo.php" method="POST">
 			<ul>
 				<li>
-					<label for="description">Beschrijving: </label>
-					<input type="text" id="description" name="description">
+					<label for="toDoItem">Beschrijving: </label>
+					<input type="text" id="description" name="toDoItem">
 				</li>
 			</ul>
-			<input type="submit" name="addToDo" value="Toevoegen">
+			<input type="submit" name="submit" value="Toevoegen">
 		</form>
 
 		<?php if(!$toDoItems): ?> <!-- wanneer er geen taken zijn (arrays zonder values bestaan niet in php) !-->
