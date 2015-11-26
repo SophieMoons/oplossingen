@@ -4,6 +4,7 @@
   	$errorMessage = false;
     $toDoItems = array();	
 	$itemStatus = "incomplete";
+	$i=0;
 
 	//als er gesubmit is...
  	if (isset($_POST['submit'])) 
@@ -18,12 +19,16 @@
         else
         {
 			$errorMessage = false;
-			$input	=	$_POST['toDoItem'];
-			array_push($toDoItems,$input); //alle geposte values komen in de array te staan (index 0 van de input omdat anders 'toevoegen' erbij komt te staan)        	
+			$input = $_POST['toDoItem'];
+
+			$toDoItems[$i] = array();				//2D array met... 
+			$toDoItems[$i]['item'] = $input; 		//...taak...
+       		$toDoItems[$i]['status'] = $itemStatus; //..en status
         }
+        $i++; //index omhoog array
     }
 
-	//als sessie geset is, gebruik deze
+	//als sessie geset is, gebruik deze (onthoud de toDo-item)
 	if(isset($_SESSION['toDoItem']))
 	{
 		$ToDo = $_SESSION['toDoItem'];
@@ -57,6 +62,7 @@
 		}
 	}
 
+	//als sessie geset is, gebruik deze (onthoud de toDo-item status)
 	if(isset($_SESSION['toggleToDo']))
 	{
 		$ToDoStatus = $_SESSION['toggleToDo'];
@@ -113,7 +119,7 @@
 						<ul>
 							<?php foreach($toDoItems as $deelKey => $deelArray):  ?>
               	  					<li>
-										<button title="complete" name="toggleToDo" value="0" class="<?= $itemStatus?>"> <?= $deelArray?> </button>
+										<button title="complete" name="toggleToDo" value="0" class="<?= $itemStatus?>"> <?= $toDoItems[$deelKey]['item'] ?> </button>
 										<button title="remove" name="removeToDo" value="0"></button>
                 					</li>
         					<?php endforeach ?>
