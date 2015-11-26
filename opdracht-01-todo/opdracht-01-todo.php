@@ -8,9 +8,10 @@
 	$itemStatus = "incomplete";
 	$completedList = incompleteInArray('incomplete', $toDoItems); //bool om te checken of de lijst voltooid is
 
- 	if (isset($_POST['submit'])) //session wordt gesaved na submitting
+	//als er gesubmit is...
+ 	if (isset($_POST['submit'])) 
     {
-        $_SESSION['toDoItem'] = $_POST['toDoItem'];
+        $_SESSION['toDoItem'] = $_POST['toDoItem']; //session wordt gesaved na submitting
 
         if ($_POST['toDoItem'] == '')//om te zien of er wel iets is ingevuld
         {
@@ -25,7 +26,7 @@
         }
     }
 
-	//check eerst of deze geset is, dan slaag je gegevens op in sessie
+	//als sessie geset is, gebruik deze
 	if(isset($_SESSION['toDoItem']))
 	{
 		$ToDo = $_SESSION['toDoItem'];
