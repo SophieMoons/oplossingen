@@ -25,6 +25,7 @@
 			$toDoItems[$i]['item'] = $input; 		//...taak...
        		$toDoItems[$i]['status'] = $itemStatus; //..en status
         }
+        
         $i++; //index omhoog array
     }
 
@@ -40,11 +41,11 @@
     	{
         	if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array($needle, $item, $strict))) 
        	 	{
-       	    	return true;
+       	    	return false;
         	}
     	}
     
-    	return false;
+    	return true;
 	}
 
 	if(isset($_POST['toggleToDo']))
@@ -68,12 +69,11 @@
 		$ToDoStatus = $_SESSION['toggleToDo'];
 	}
 
-		var_dump($toDoItems); //wordt altijd overschreven... moet een methode vinden om een soort push effect te krijgen
-    	var_dump($errorMessage);
+										var_dump($toDoItems); //wordt altijd overschreven... moet een methode vinden om een soort push effect te krijgen
+    									var_dump($errorMessage);
 
     	$completedList = incompleteInArray('incomplete', $toDoItems); //bool om te checken of de lijst volledig afgecheckt is
-    	var_dump($completedList);
-    	var_dump($itemStatus);
+    									var_dump($completedList);
 
 ?>
 
@@ -134,7 +134,5 @@
 		<?php if(!empty($toDoItems) && $completedList == true) :?> <!-- alle taken voltooid? !-->
 			<p>"Ge moogt spellekens gaan spelen!" - je moeder</p>
 		<?php endif ?>
-			<?php 			?> <!-- de nog voltooien taken... (coming soon)	!-->
-
 </body>
 </html>
