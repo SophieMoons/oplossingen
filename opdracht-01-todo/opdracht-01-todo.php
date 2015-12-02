@@ -16,7 +16,7 @@
   			$errorMessage=true;
         }
 
-        else
+        else //NOG FOUT: WANNEER ERROR -> WAARDES OVERSCHREVEN
         {
 			$errorMessage = false;
 			$input = $_POST['toDoItem'];
@@ -26,7 +26,7 @@
        		$toDoItems[$i]['status'] = $itemStatus; //..en status
         }
         
-        $i++; //index omhoog array
+        $i++; //index omhoog array //DE FOUT: HET ONTHOUD HET NI!!!
     }
 
 	//als sessie geset is, gebruik deze (onthoud de toDo-item)
