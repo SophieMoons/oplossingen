@@ -227,12 +227,12 @@ function query($db, $tempQuery, $tokens = false) //makkelijker voor meerdere arr
 						<?php endforeach ?>
 						<td>
 							<button type="submit" name="confirm-delete" value="<?= $brouwer['brouwernr'] ?>" class="delete-button">
-								<img src="icon-delete.png" alt="Delete button">
+								<img src="img/icon-delete.png" alt="Delete button">
 							</button>
 						</td>
 						<td>
 							<button type="submit" name="confirm-edit" value="<?= $brouwer['brouwernr'] ?>" class="delete-button">
-								<img src="icon-edit.png" alt="Edit button">
+								<img src="img/icon-edit.png" alt="Edit button">
 							</button>
 						</td>
 					</tr>

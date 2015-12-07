@@ -120,7 +120,7 @@ catch(PDOException $e) //in geval van database connection fail
 
 					<td>
 						<button type="submit" name="delete" value="<?= $brouwerInfo['brouwernr'] ?>" class="delete-button">
-						<img src="icon-delete.png" alt="Delete button">
+						<img src="img/icon-delete.png" alt="Delete button">
 						</button>
 					</td>	
 				</tr>
