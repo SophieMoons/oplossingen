@@ -2,32 +2,43 @@
 
 $errorMessage=false;
 
+//deel 2
+$deleted = false;
+$IDDeleted = false;
+
 try
 {
 	$database=new PDO('mysql:host=localhost;dbname=bieren','root',''); //connecteer met database
 
-	if (isset($_POST['delete']))
+	if(isset($_POST['confirm-delete'])) //deel 2
+	{
+		$deleted = true;
+		$IDDeleted = true;
+	}
+
+	if ( isset( $_POST['delete'] ) )
+	{
+		$deleteQuery = 'DELETE FROM brouwers
+						WHERE brouwernr = :brouwernr';
+
+		$deletePreparation = $database->prepare($deleteQuery);
+
+		$deletePreparation->bindValue(':brouwernr', $_POST['delete']);
+
+		$isDeleted = $deletePreparation->execute();
+
+		if ($isDeleted)
 		{
-			$deleteQuery = 'DELETE FROM brouwers
-							WHERE brouwernr = :brouwernr';
-
-			$deletePreparation = $database>prepare($deleteQuery);
-
-			$deletePreparation-> bindValue(':brouwernr', $_POST['delete']);
-
-			$deleted = $deletePreparation-> execute();
-
-			if ($deleted)
-			{
-				$message['type'] = 'success';
-				$message['text'] = 'Item succesvol verwijderd';
-			}
-			else
-			{
-				$message['type']	=	'error';
-				$message['text']	=	'Item niet verwijderd: ' . $deletePreparation->errorInfo()[2];
-			}
+			$errorMessage['type'] =	'success';
+			$errorMessage['text'] =	'De item is succesvol verwijderd.';
 		}
+		
+		else //door de foreign key kunt ge ni deleten
+		{
+			$errorMessage['type'] =	'error';
+			$errorMessage['text'] =	'Deze item kon niet verwijderd worden. Reden: ' . $deletePreparation->errorInfo()[2];
+		}
+	}
 
 	$query =   'SELECT* FROM brouwers';
 
@@ -81,6 +92,20 @@ catch(PDOException $e) //in geval van database connection fail
 			{
 				background-color:lightgrey;
 			}
+
+			.delete-button
+			{
+				background-color	:	transparent;
+				border				:	none;
+				padding				:	0px;
+				cursor				:	pointer;
+			}
+
+			.confirm-delete
+			{
+				background-color	:	red;
+				color				: 	white;
+			}			
 		</style>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -97,6 +122,22 @@ catch(PDOException $e) //in geval van database connection fail
 		</div>
 	<?php endif ?>
 	
+	<?php if ($deleted): ?> <!-- deel 2 !-->
+		<div>
+			<p>Bent u zeker dat u deze record wilt verwijderen?</p>
+			<form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
+
+				<button type="submit" name="delete" value="<?= $IDDeleted ?>">
+					Ja
+				</button>
+
+				<button type="submit">
+					Ongedaan maken
+				</button>
+			</form>
+		</div>
+	<?php endif ?>
+
 	<form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
 	<table>
 		
