@@ -22,12 +22,12 @@ try
 		$bierArr[] = $row;
 	}
 
-	$columnName = array();
-	$columName[] = 'Bier nr.';
+	$columnNames	=	array();
+	$columnNames[]	=	'Nr.';
 
 	foreach($bierArr[0] as $key => $bier)
 	{
-		$columName[] = $key;
+		$columnNames[] = $key;
 	}
 }
 
@@ -64,6 +64,11 @@ catch(PDOException $e) //in geval van database connection fail
 				background-color:lightgrey;
 			}
 		</style>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/global.css">
+		<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/directory.css">
+		<link rel="stylesheet" type="text/css" href="http://web-backend.local/css/facade.css">
 	</head>
 <body>
 
@@ -78,7 +83,7 @@ catch(PDOException $e) //in geval van database connection fail
 		
 		<thead>
 			<tr>
-				<?php foreach ($columnName as $name): ?>
+				<?php foreach ($columnNames as $name): ?>
 					<th><?= $name ?></th>
 				<?php endforeach ?>
 			</tr>
@@ -87,9 +92,9 @@ catch(PDOException $e) //in geval van database connection fail
 		<tbody>
 		
 			<?php foreach ($bierArr as $key => $bier): ?>
-				<tr class="<?= ( ( $key + 1) %2 == 0 ) ? 'even' : '' ?>">
+				<tr class="<?= (($key + 1) %2 == 0) ? 'even' : '' ?>">
 					<td><?= ($key + 1) ?></td>
-					<?php foreach ($bierArr as $value): ?>
+					<?php foreach ($bier as $value): ?>
 						<td><?= $value ?></td>
 					<?php endforeach ?>
 				</tr>
