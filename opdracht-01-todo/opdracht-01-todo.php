@@ -1,80 +1,61 @@
 <?php
+//AHHAA! gebasseerd op winkelkarretje (voorbeeldoefening) //vss sessies houden de verschillende data bij (sessie CompletedToDo en sessie IncompleteToDo)
+
 	session_start();
 
+	// Sessie verwijderen
+	if (isset($_GET['session']))
+	{
+		if($_GET['session'] === 'destroy')
+		{
+			session_destroy();
+			header('Location: opdracht-01-todo.php'); // staat in voor refresh
+		}
+	}
+
   	$errorMessage = false;
-    $toDoItems = array();	
-	$itemStatus = "incomplete";
-	$i=0;
 
 	//als er gesubmit is...
  	if (isset($_POST['submit'])) 
-    {
-        $_SESSION['toDoItem'] = $_POST['toDoItem']; //session wordt gesaved na submitting
+    {			
+		$input = trim($_POST['toDoItem']); //lege input is ook met spaties, dus trimmen die handel!
 
-        if ($_POST['toDoItem'] == '')//om te zien of er wel iets is ingevuld
+        if ($input != '')//om te zien of er wel iets is ingevuld, if wel ingevuld ->
         {
-  			$errorMessage=true;
+			$_SESSION['incompleteToDo'][] = $_POST['toDoItem'];
         }
 
-        else //NOG FOUT: WANNEER ERROR -> WAARDES OVERSCHREVEN
+        else
         {
-			$errorMessage = false;
-			$input = $_POST['toDoItem'];
-
-			$toDoItems[$i] = array();				//2D array met... 
-			$toDoItems[$i]['item'] = $input; 		//...taak...
-       		$toDoItems[$i]['status'] = $itemStatus; //..en status
+			$errorMessage = true;
         }
         
-        $i++; //index omhoog array //DE FOUT: HET ONTHOUD HET NI!!!
     }
 
-	//als sessie geset is, gebruik deze (onthoud de toDo-item)
-	if(isset($_SESSION['toDoItem']))
+	if (isset($_POST['toggleIncomplete'])) 
 	{
-		$ToDo = $_SESSION['toDoItem'];
+		$_SESSION['completedToDo'][] = $_SESSION['incompleteToDo'][$_POST['toggleIncomplete']];
+		unset($_SESSION['incompleteToDo'][$_POST['toggleIncomplete']]); //is nu completed
 	}
 
-	function incompleteInArray($needle, $haystack, $strict = false) //zit er een incomplete to-do item in de array?
+	if (isset($_POST['toggleComplete']))
 	{
-    	foreach ($haystack as $item) 
-    	{
-        	if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array($needle, $item, $strict))) 
-       	 	{
-       	    	return false;
-        	}
-    	}
-    
-    	return true;
+		$_SESSION['incompleteToDo'][] = $_SESSION['completedToDo'][$_POST['toggleComplete']];
+		unset($_SESSION['incompleteToDo'][$_POST['toggleComplete']]);
 	}
 
-	if(isset($_POST['toggleToDo']))
+	/* DELETE */
+	if (isset($_POST['removeIncomplete']))
 	{
-		$_SESSION['toggleToDo'] = $_POST['toggleToDo'];
-
-		if($itemStatus =='incomplete')
-		{
-			$itemStatus ='complete';
-		}
-
-		else
-		{
-			$itemStatus='incomplete';
-		}
+		unset($_SESSION['incompleteToDo'][$_POST['removeIncomplete']]);
 	}
 
-	//als sessie geset is, gebruik deze (onthoud de toDo-item status)
-	if(isset($_SESSION['toggleToDo']))
+	if (isset($_POST['removeComplete']))
 	{
-		$ToDoStatus = $_SESSION['toggleToDo'];
+		unset($_SESSION['completedToDo'][$_POST['removeComplete']]);
 	}
 
-										var_dump($toDoItems); //wordt altijd overschreven... moet een methode vinden om een soort push effect te krijgen
-    									var_dump($errorMessage);
-
-    	$completedList = incompleteInArray('incomplete', $toDoItems); //bool om te checken of de lijst volledig afgecheckt is
-    									var_dump($completedList);
-
+	var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -98,41 +79,86 @@
 			<p>Probeert ge da hier kapot te maken ofzo?! Type iets in!</p>
 		</div>
 	<?php endif ?>
+
 	<h1>To-Do App</h1>
 
-		<form action="opdracht-01-todo.php" method="POST">
+	<h4>Voeg een To-Do toe:</h4>
+
+	<form action="opdracht-01-todo.php" method="POST">
+			
+		<ul>
+			<li>
+				<label for="toDoItem">Beschrijving: </label>
+				<input type="text" id="toDoItem" name="toDoItem">
+			</li>
+		</ul>
+
+		<input type="submit" name="submit" value="Toevoegen">
+
+	</form>		
+
+  	<?php if (empty($_SESSION['incompleteToDo']) && empty($_SESSION['completedToDo'])): ?>
+
+		<p>WAT!? Geen TAKEN??? ONMOGELIJK!!</p>
+
+  		<?php else: ?>
+		
+			<?php if($_SESSION['incompleteToDo'] == null): ?>
+			
+				<p>"Ge moogt spellekens gaan spelen!" - je moeder</p>
+
+				<?php else: ?>
+		
+					<p>"Werken luilakken!" - Bobby</p>
+
+			<?php endif?>		
+			
+		<h3>Still To-Do:</h3>
+
+		<?php if($_SESSION['incompleteToDo'] != null): ?>
+
 			<ul>
-				<li>
-					<label for="toDoItem">Beschrijving: </label>
-					<input type="text" id="description" name="toDoItem">
-				</li>
+				<?php if (isset( $_SESSION['incompleteToDo'] )): ?>
+					<?php foreach($_SESSION['incompleteToDo'] as $key => $incompleteItem): ?>
+						<li>
+							<form action="opdracht-01-todo.php" method="POST">
+								<button title="complete" name="toggleIncomplete" value="<?= $key ?>" class="complete"></button>
+									<p class="toDoItems"> <?= $incompleteItem ?> </p>  <!-- Geeft dus gewoon inhoud van de array weer -->
+								<button title="remove" name="removeIncomplete" value="<?= $key ?>"></button>
+							</form>		
+						</li>
+					<?php endforeach ?>
+				<?php endif ?>
 			</ul>
-			<input type="submit" name="submit" value="Toevoegen">
-		</form>
 
-		<?php if(!$toDoItems): ?> <!-- wanneer er geen taken zijn (arrays zonder values bestaan niet in php) !-->
-			<p>WAT!? Geen TAKEN??? ONMOGELIJK!!</p>
-
-			<?php else :?> <!-- indien taken toegevoegd... !-->
-				<form action="opdracht-01-todo.php" method="POST">
-					<h2>To-Do:</h2>
-						<ul>
-							<?php foreach($toDoItems as $deelKey => $deelArray):  ?>
-              	  					<li>
-										<button title="complete" name="toggleToDo" value="0" class="<?= $itemStatus?>"> <?= $toDoItems[$deelKey]['item'] ?> </button>
-										<button title="remove" name="removeToDo" value="0"></button>
-                					</li>
-        					<?php endforeach ?>
-						</ul>
-				</form>		
 		<?php endif ?>
 
-		<?php if(!empty($toDoItems) && $completedList == false) :?> <!-- nog taken onvoltooid? !-->
-			<p>"Werken luilakken!" - Bobby</p>
-		<?php endif ?>
+		<h3>Completed Tasks:</h3>
+			
+		<?php if (isset( $_SESSION['completedToDo'] )): ?>
+		
+			<?php if($_SESSION['completedToDo'] != null): ?>
 
-		<?php if(!empty($toDoItems) && $completedList == true) :?> <!-- alle taken voltooid? !-->
-			<p>"Ge moogt spellekens gaan spelen!" - je moeder</p>
-		<?php endif ?>
-</body>
+				<ul>
+					<?php foreach($_SESSION['completedToDo'] as $key => $completedItem): ?>
+						<li>
+							<form action="opdracht-01-todo.php" method="POST">
+								<button title="complete" name="toggleComplete" value="<?= $key ?>" class="complete"></button>
+									<p class="toDoItems" id="completedItem"> <?= $completedItem ?> </p>
+								<button title="remove" name="removeComplete" value="<?= $key ?>"></button>
+							</form>
+						</li>
+					<?php endforeach ?>		
+				</ul>
+				
+			<?php endif ?>
+			
+		<?php endif ?>	
+		
+	<?php endif ?>
+
+	<!-- VERNIETIG SESSIE (VOOR DEBUGGING) -->
+		<a href="opdracht-01-todo.php?session=destroy">VERNIETIG SESSIE</a>
+
+    </body>
 </html>
