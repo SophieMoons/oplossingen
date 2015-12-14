@@ -18,7 +18,7 @@ $user = new User();
 
 $userEmail = User::getEmail();//$_SESSION['login']['email']; //laat email zien boven dashboard, de login array zijn gegevens komen van de dehashing van de cookie -> technisch gezien uit cookie gehaald?
 
-$userProfilePic = User::getId(); //profilePicture
+$userProfilePic = User::getId(); //''; //profilePicture // ^ GERAAK ER NOG NIET AAN 
 
 if (User::validate($connection)) //checkt of de cookie geset is
 {

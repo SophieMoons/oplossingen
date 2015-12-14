@@ -38,21 +38,16 @@ if(isset($_POST['submit']))
     {
         $isValid = 0; // > O = ongeldig 
 
-		if ((($_FILES["profilePicture"]["type"] !== "image/png")
-		||   ($_FILES["profilePicture"]["type"] !== "image/jpeg")
-		||   ($_FILES["profilePicture"]["type"] !== "image/gif"))
-		&&   ($_FILES["profilePicture"]["size"] > 2000000)) 
-   	 	{
-			++$isValid;
-    	}
-
     	if ($isValid > 0) //ongeldig?
     	{
        	 	new Notification('error',"Het bestand is niet geldig, probeer opnieuw");
       		header('location: edit-profile.php');
     	}
         
-   		else
+   		if ((($_FILES["profilePicture"]["type"] == "image/png")
+		||   ($_FILES["profilePicture"]["type"] == "image/jpeg")
+		||   ($_FILES["profilePicture"]["type"] == "image/gif"))
+		&&   ($_FILES["profilePicture"]["size"] < 2000000)) 
     	{
      	   $newFileName = createNewFileName($_FILES['profilePicture']['name']);
 
@@ -68,6 +63,11 @@ if(isset($_POST['submit']))
            
         	move_uploaded_file( $_FILES['profilePicture']['temp_name'], (ROOT . '/img/' . $newFileName)); //uploaden naar img map
      	}
+
+     	else
+   	 	{
+			++$isValid;
+    	}
 	}
 
 	if ($newFileName) //uploaden voltooid, nu naar database sturen
@@ -85,9 +85,8 @@ if(isset($_POST['submit']))
 
     	new Notification('succes',"Uw gegevens zijn opgeslagen");
         header('location: edit-profile.php');
-    }
 
-    //
+	//
 	//IMAGE MANIPULATION (max 400x400)
     //
 
@@ -146,6 +145,8 @@ if(isset($_POST['submit']))
 	//
 	//EIND MANIP
 	//	
+
+    }
 }
     
 function createNewFileName($fileName)
