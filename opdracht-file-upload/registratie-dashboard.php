@@ -7,20 +7,29 @@ function __autoload($class)
 	require_once('classes/'. $class . '.php');
 }
 
+ spl_autoload_register( '__autoload' );
+
+define( 'BASE_URL', 'http://' . $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'PHP_SELF' ] );
+define( 'HOST', dirname( BASE_URL ) . '/');
+
+$notification = false;
+
 $connection = new PDO('mysql:host=localhost;dbname=database-file-upload', 'root', '');
+
+$userEmail = $_SESSION['registration']['email']; //laat email zien boven dashboard
 
 if (User::validate($connection)) //checkt of de cookie geset is
 {
-	$notification =	notification::getNotification();
+	$notification =	Notification::getNotification();
 }
 
 else
 {
 	User::logout(); //cookie en sessie worden unset
 
-	new notification('error', 'Inloggen mislukt, probeer het opnieuw'); //error wordt aangegeven
+	new notification('error', 'U moet eerst inloggen'); //error wordt aangegeven
 
-	header('location: login-form.php'); //niet vergeten!!
+	header('location: login-form.php');
 }
 
 var_dump($_SESSION);
@@ -39,6 +48,8 @@ var_dump($_SESSION);
 </head>
 <body>
 
+    <p><a href="registratie-dashboard.php">Dashboard</a> | Ingelogd als <?= $userEmail ?> | <a href="logout.php">uitloggen</a></p>
+
 		<h1>Dashboard</h1>
 		
 		<?php if (isset($notification)): ?>
@@ -47,7 +58,7 @@ var_dump($_SESSION);
 			</div>
 		<?php endif ?>
 		
-		<a href="logout.php">uitloggen</a>
+		<a href="edit-profile.php">Gegevens wijzigen</a>
 
 	</body>
 </head>

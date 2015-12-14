@@ -1,6 +1,9 @@
 <?php
 class User
 {
+	private $id	= '';
+	private $profilePicture	= ''; //^ hebben we nodig voor de images op te halen uit database 
+	private $email = '';
 
 	public static function createNewUser($connection, $email, $password)
 	{
@@ -10,11 +13,10 @@ class User
 
 		$database = new Database($connection);
 
-		$query = 'INSERT INTO 	users 
-							   (email,
-								salt,
-								hash_password,
-								last_login_time)
+		$query = 'INSERT INTO 	users(  email,
+										salt,
+										hash_password,
+										last_login_time)
 
 						VALUES (:email,
 								:salt,
@@ -22,10 +24,12 @@ class User
 								NOW())';
 
 		$tokens	= array(':email' => $email,
-					':salt' => $salt,
-					':hash_password' => $hashPassword);
+						':salt' => $salt,
+						':hash_password' => $hashPassword);
 
 		$userData =	$database->query($query , $tokens);
+
+		$this->email = $email; //ophalen uit cookie later
 
 		$cookie = self::createCookie($salt, $email);
 			
@@ -46,6 +50,8 @@ class User
 		$hashEmail = hash('sha512', $email . $salt);
 		$cookieValue =	$email . ',' . $hashEmail;
 
+		$this->email = $email;
+
 		$cookie	=	setcookie('authenticated', $cookieValue, time() + 86400 * 30); //30 dagen geldig
 
 		return $cookie;
@@ -58,7 +64,8 @@ class User
 		{
 			$userData =	explode(',', $_COOKIE['authenticated']);
 			
-			$email = $userData[0];
+			$this->email = $userData[0];
+
 			$saltEmail = $userData[1];
 
 			$database = new Database($connection);
@@ -73,6 +80,10 @@ class User
 				$salt = $userData['data'][0]['salt']; //...geef de salt van de email terug
 
 				$newSaltEmail = hash('sha512' , $email . $salt); //eerst controleren of het juist gehashed is
+
+				// geef id en profilepicture
+				$this->id = $userData['data'][0]['id'];
+				$this->profilePicture = $userData['data'][0]['profile_picture'];
 
 				if ($newSaltEmail == $saltEmail) //komt het overeen, dan is de cookie gevalideerd
 				{
@@ -98,5 +109,42 @@ class User
 		}
 
 	}
+	
+	public function checkIfUserExists($email)
+	{
+		$userExists	=	false;
+
+		$checkQuery	=	'SELECT * 
+						 FROM users
+						 WHERE email = :email';
+			
+		$placeholders	=	array(':email' => $email);
+
+		$result = $this->database->query($checkQuery, $placeholders);
+
+		if($result)
+		{
+			$userExists = true;
+		}
+		
+		return $userExists;
+
+	}
+
+	// Help, kan geen this gebruiken
+	public function getEmail()
+	{
+		return $this->email;
+	}
+
+	public function getProfilePicture()
+	{
+		return $this->profilePicture;
+	}
+
+	public function getId()
+	{
+		return $this->id;
+	}	
 }
 ?>
