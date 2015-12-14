@@ -35,15 +35,7 @@ if(isset($_POST['submit']))
 	$newFileName = false;
 
     if($_FILES['profilePicture']['error'] !== 4) //geldigheid testen
-    {
-        $isValid = 0; // > O = ongeldig 
-
-    	if ($isValid > 0) //ongeldig?
-    	{
-       	 	new Notification('error',"Het bestand is niet geldig, probeer opnieuw");
-      		header('location: edit-profile.php');
-    	}
-        
+    {        
    		if ((($_FILES["profilePicture"]["type"] == "image/png")
 		||   ($_FILES["profilePicture"]["type"] == "image/jpeg")
 		||   ($_FILES["profilePicture"]["type"] == "image/gif"))
@@ -66,7 +58,8 @@ if(isset($_POST['submit']))
 
      	else
    	 	{
-			++$isValid;
+   	 		new Notification('error',"Het bestand is niet geldig, probeer opnieuw");
+      		header('location: edit-profile.php');
     	}
 	}
 
