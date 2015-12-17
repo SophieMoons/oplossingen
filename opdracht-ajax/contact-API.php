@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-if (isset($_POST['submit']))
+//var_dump($_POST);
+if (isset($_POST['email']) && isset($_POST['email'])) //check if email en message gepost zijn (POST[submit] werkt niet zijn(stomme JQUERY))(eigenlijk ook checken if ajax, maar liefst niet mixen met php dus nu even zo houden)
 {
 	$admin = 'moonssophie@gmail.com'; //ontvanger
 	
@@ -59,6 +60,7 @@ if (isset($_POST['submit']))
 
 			if ($messageSent && $copySent) //verstuurd MET vakje aangevinkt
 			{
+
 
 				if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') //ajax-request?
 				{

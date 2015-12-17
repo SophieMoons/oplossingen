@@ -93,6 +93,7 @@ if(isset($_SESSION['notification'])) //als er een notificatie is...
 					// Deze parameter bevat de returnwaarde van de pagina die het heeft opgeroepen.
 
 					// De data wordt teruggegeven in JSON-formaat, maar wordt voorlopig nog geïnterpreteerd als een normale string
+					console.log( "data", data );
 					// Deze string moet eerst nog omgezet worden naar leesbare JSON
 					parsedData	=	JSON.parse(data);
 

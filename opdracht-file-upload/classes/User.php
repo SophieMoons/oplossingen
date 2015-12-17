@@ -2,8 +2,8 @@
 class User
 {
 	private $id	= '';
-	private $profilePicture	= ''; //^ hebben we nodig voor de images op te halen uit database 
-	private $email = '';
+	private $profilePicture	= ''; 
+	private $email = ''; //^ hebben we nodig voor de mail en images op te halen uit database 
 
 	public static function createNewUser($connection, $email, $password)
 	{
@@ -31,7 +31,7 @@ class User
 
 		$this->email = $email; //ophalen uit cookie later
 
-		$cookie = self::createCookie($salt, $email);
+		$cookie = $this->createCookie($salt, $email);
 			
 		return $cookie;
 	}
