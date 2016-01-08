@@ -1,23 +1,35 @@
 <?php
 
+    $baseName = '/' . basename(__FILE__) . '/';
+
+    $root = preg_replace($baseName, '', __FILE__);
+
+    $htaccess = file_get_contents($root .'/.htaccess');
+    
+    $url = $_SERVER['HTTP_HOST'] . preg_replace('/Deel2.*$/', '', $_SERVER['REQUEST_URI']);
+
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>opdracht-mod_rewrite-basis</title>
+    <title>opdracht-mod_rewrite-basis: Deel 3</title>
     <link rel="stylesheet" href="http://web-backend.local/css/global.css">
     <link rel="stylesheet" href="http://web-backend.local/css/facade.css">
     <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
 </head>
 
-<body class="web-backend-voorbeeld">
+<body>
 
 	<section class="body">
 
-		<h1>Het originele bestand</h1>
+		<h1>var_dump() van $_GET variabele (Dynamisch)</h1>
+           
+            <p>Type iets in na de url</p>
+
+        <pre><?php print_r($_GET) ?></pre>
 
 	</section>
 

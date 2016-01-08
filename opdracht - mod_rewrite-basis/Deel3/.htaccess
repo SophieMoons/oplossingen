@@ -1,0 +1,7 @@
+RewriteEngine On
+
+DirectoryIndex original.php
+#wordt index wanneer surft naar Deel1
+
+RewriteRule ^([^/\.]*)/?$ original.php?user=$1
+#nu kan elke waarde (naast die tekens tussen haakjes) de user value worden!
