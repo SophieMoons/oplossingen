@@ -7,6 +7,8 @@
     $htaccess = file_get_contents($root .'/.htaccess');
     
     $url = $_SERVER['HTTP_HOST'] . preg_replace('/Deel2.*$/', '', $_SERVER['REQUEST_URI']);
+
+    var_dump($url);
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +16,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>opdracht-mod_rewrite-basis</title>
+    <title>opdracht-mod_rewrite-basis: Deel 2</title>
     <link rel="stylesheet" href="http://web-backend.local/css/global.css">
     <link rel="stylesheet" href="http://web-backend.local/css/facade.css">
     <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
@@ -25,8 +27,8 @@
 	<section class="body">
 
 		<h1>var_dump() van $_GET variabele</h1>
-
-            <p>Surf naar <a href="http://<?php echo $url ?>Deel2/rasmus/">http://<?php echo $url ?>Deel2/rasmus/</a></p>
+           
+            <p>Surf naar: <a href="http://<?php echo $url ?>Deel2/rasmus">http://<?php echo $url ?>Deel2/rasmus</a></p>
 
         <pre><?php print_r($_GET) ?></pre>
 

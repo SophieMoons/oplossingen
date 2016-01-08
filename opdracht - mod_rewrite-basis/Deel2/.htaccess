@@ -3,4 +3,5 @@ RewriteEngine On
 DirectoryIndex original.php
 #wordt index wanneer surft naar Deel1
 
-RewriteRule ^Deel2/rasmus/$ original.php?user=$1
+RewriteRule ^rasmus$ original.php?user=rasmus
+#wanneer rasmus wordt bijgetypt achter de url, wordt dit de user value
