@@ -2,7 +2,28 @@
 	
 	session_start();
 
-	$isValid = FALSE;
+	$isValid = false;
+
+	$notification=false;
+
+	if(isset($_SESSION['fieldNames']))
+	{
+		$titel = $_SESSION['fieldNames']['titel'];
+		$artikel = $_SESSION['fieldNames']['artikel'];
+		$kernwoorden = $_SESSION['fieldNames']['kernwoorden'];
+		$datum = $_SESSION['fieldNames']['datum']; //moet nog worden omgezet naar value, geeft nu null
+	}
+
+	if(isset($_SESSION['notification'])) //als er een notificatie is...
+	{
+		$notification['type'] = $_SESSION['notification']['type'];
+		$notification['text'] = $_SESSION['notification']['text'];
+
+		unset($_SESSION['notification']); //terug unsetten hierna
+	}
+
+	var_dump($datum);
+
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +40,16 @@
 
 		<h1>Artikel toevoegen</h1>
 
+		<?php if ($notification): ?>
+			<div class="regular <?= $notification['type'] ?>">
+				<?= $notification['text'] ?>
+			</div>
+		<?php endif ?>
+
 		<a href="">Terug naar overzicht</a>
 	
 		<?php if (!$isValid): ?>
-			<form action="artikel-toevoegen.php" method="POST">
+			<form action="artikel-toevoegen-form.php" method="POST">
 			
 						<label for="titel">Titel</label>
 						<input type="text" name="titel">
@@ -34,14 +61,14 @@
 						<input type="text" name="kernwoorden">
 
 						<label for="datum">Datum</label>
-						<input type="date" name="datum" min="1900-12-31" max="2015-12-31"> <!-- In chrome wordt dit een kalender !-->
+						<input type="date" name="datum" min="2016-01-01"> <!-- In chrome wordt dit een kalender !-->
 
 				<input type="submit" id="submit" name="submit">
 
 			</form>
 		<?php else: ?>
 
-			<p class = "succes">Korting toegekend! </p>
+			<p class = "succes">Artikel toegevoegd!</p>
 
 		<?php endif ?>
     </body>

@@ -7,9 +7,7 @@ if (isset($_POST['submit']))
 	$titel = $_POST['titel'];
 	$artikel = $_POST['artikel'];
 	$kerwoorden = $_POST['kernwoorden'];
-	$datum = $_POST['kernwoorden'];
-
-	$validEmail = filter_var($sender, FILTER_VALIDATE_EMAIL); //checkt of het wel degelijk een email-adres is
+	$datum = $_POST['datum'];
 
 	try
 	{
@@ -22,71 +20,25 @@ if (isset($_POST['submit']))
 					VALUES ("' . $titel . '",	
 							"' . $artikel . '",
 							"' . $kernwoorden . '",
-							"' . $datum . '",)'; 	//=> ^ best dat je deze in stringvorm direct zet, makkelijker voor op te halen
+							'$datum',)'; 	//=> ^ best dat je deze in stringvorm direct zet, makkelijker voor op te halen
 		
-		if($_POST['message']!='' && $_POST['email']!='' && $validEmail) //moet ingevuld zijn EN email moet correct zijn
+		if($_POST['titel']!='' && $_POST['artikel']!='' && $_POST['kernwoorden']!='' && $_POST['datum']!='') //moet ingevuld zijn EN email moet correct zijn
 		{
-			//E-mail				
-			$to = $admin;
-			$subject = 	'Vraag van: ' . $sender;
-
-			$message = 	'<p>Beste, </p>'.
-						'<p>'.$message.'</p>';
-										
-			$headers = 'From: ' . $sender . "\r\n".
-					   'Reply-To: ' . $sender  . "\r\n".
-					   'MIME-Version: 1.0'. "\r\n". //heb je nodig om je bericht te kunnen stylen met html
-					   'Content-Type: text/html; charset=ISO-8859-1'. "\r\n"; //dit ook
-
-			$messageSent = mail($to, $subject, $message, $headers);	
-
-
-			$copySent = false; //zijn beide messages verstuurd?
-		
-			if ($sendCopy) //wanneer vakje aangevinkt, verstuur kopie
-			{
-				$to = $sender;
-				$subject = 'Kopie van vraag aan '. $admin;
-
-				$message =	'<p>Dit is het bericht dat je verstuurde naar: ' . $admin . '<p>'.
-							'<p>'.$message.'</p>';
-													
-				$headers = 	'From: ' . $admin . "\r\n".
-							'Reply-To: ' . $admin  . "\r\n".
-							'MIME-Version: 1.0'. "\r\n".
-							'Content-Type: text/html; charset=ISO-8859-1'. "\r\n";
-					
-				$copySent = mail($to, $subject, $message, $headers);
-			}
-
-			if ($messageSent && $copySent) //verstuurd MET vakje aangevinkt
-			{
-				$_SESSION['notification']['type'] = 'success';
-				$_SESSION['notification']['text'] = 'Bericht verstuurd. U zal spoedig uw kopie ontvangen.';
-
-				unset($_SESSION['fieldNames']);
-			}
-
-			elseif($messageSent) //ZONDER kopie
-			{
-				$_SESSION['notification']['type'] = 'success';
-				$_SESSION['notification']['text'] = 'Bericht verstuurd.';
-
-				unset($_SESSION['fieldNames']);			
-			}
+			
 		}
 
 		else
 		{
-			$_SESSION['fieldNames']['email'] = isset($_POST['email']) ? $_POST['email'] : '';
-			$_SESSION['fieldNames']['message'] = isset($_POST['message']) ? $_POST['message'] : '';
-			$_SESSION['fieldNames']['sendCopy'] = isset($_POST['sendCopy']) ? $_POST['sendCopy'] : '';
+			$_SESSION['fieldNames']['titel'] = isset($_POST['titel']) ? $_POST['titel'] : '';
+			$_SESSION['fieldNames']['artikel'] = isset($_POST['artikel']) ? $_POST['artikel'] : '';
+			$_SESSION['fieldNames']['kernwoorden'] = isset($_POST['kernwoorden']) ? $_POST['kernwoorden'] : '';
+			$_SESSION['fieldNames']['datum'] = isset($_POST['datum']) ? $_POST['datum'] : '';
 
 			$_SESSION['notification']['type'] = 'error';
-			$_SESSION['notification']['text'] = 'Bericht niet verstuurd, bekijk uw gegevens en probeer opnieuw';
+			$_SESSION['notification']['text'] = '1 van de velden is niet/incorrect ingevuld, bekijk uw gegevens en probeer opnieuw';
 		}
 
-		header('location: contact-form.php');
+		header('location: artikel-toevoegen-form.php');
 	}
 
 	catch(PDOException $e) //in geval van database connection fail

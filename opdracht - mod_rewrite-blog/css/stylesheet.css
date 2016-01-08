@@ -22,3 +22,26 @@ form
 {
     margin-top:20px;
 }
+
+.normal
+{
+    margin: 5px 0px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.error
+{
+    font color: #B22222;
+    background-color: #F08080;
+    max-width: 360px;
+    margin-bottom: 10px;
+}
+
+.succes
+{
+    font-size:22px;
+    margin-left: 40%;
+    margin-right: 40%;
+    font-family:sans-serif;
+}
