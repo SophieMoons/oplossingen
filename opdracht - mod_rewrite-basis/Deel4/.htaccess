@@ -1,0 +1,8 @@
+RewriteEngine On
+
+DirectoryIndex original.php
+#wordt index wanneer surft naar Deel4
+
+RewriteRule ^([^/\.]*)/?$ original.php?user=$1&role=admin
+# nu kan elke waarde (naast die tekens tussen haakjes) de user value worden!
+# + met de '&' karakter is er een role value toegevoegd (nu = hardcoded een admin)

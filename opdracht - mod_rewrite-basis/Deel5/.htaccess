@@ -1,0 +1,9 @@
+RewriteEngine On
+
+DirectoryIndex original.php
+#wordt index wanneer surft naar Deel5
+
+RewriteRule ^([^/\.]*)/([^/\.]*)?$ original.php?user=$1&role=$2
+# nu kan elke waarde (naast die tekens tussen haakjes) de user value worden!
+# een 2de dynamische waarde is toegevoegd door achter de '/' teken nog een alles-dinges te zetten (niet beginnen met het '^'-teken, dat is de startpositie).
+# + met de '&' karakter is er een role value toegevoegd

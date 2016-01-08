@@ -1,7 +1,7 @@
 RewriteEngine On
 
 DirectoryIndex original.php
-#wordt index wanneer surft naar Deel1
+#wordt index wanneer surft naar Deel2
 
 RewriteRule ^rasmus$ original.php?user=rasmus
 #wanneer rasmus wordt bijgetypt achter de url, wordt dit de user value

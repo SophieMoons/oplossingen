@@ -1,13 +1,13 @@
 <?php
-
+    /*
     $baseName = '/' . basename(__FILE__) . '/';
 
     $root = preg_replace($baseName, '', __FILE__);
 
     $htaccess = file_get_contents($root .'/.htaccess');
     
-    $url = $_SERVER['HTTP_HOST'] . preg_replace('/Deel2.*$/', '', $_SERVER['REQUEST_URI']);
-
+    $url = $_SERVER['HTTP_HOST'] . preg_replace('/Deel3.*$/', '', $_SERVER['REQUEST_URI']);
+    */
 ?>
 
 <!DOCTYPE html>
