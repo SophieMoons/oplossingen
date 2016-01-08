@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule ^original.php$ redirect.php
+
+DirectoryIndex original.php
+#wordt index wanneer surft naar Deel1

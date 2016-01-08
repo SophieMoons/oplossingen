@@ -1,0 +1,6 @@
+RewriteEngine On
+
+DirectoryIndex original.php
+#wordt index wanneer surft naar Deel1
+
+RewriteRule ^Deel2/rasmus/$ original.php?user=$1
